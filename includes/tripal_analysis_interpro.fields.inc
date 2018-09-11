@@ -54,6 +54,12 @@ function tripal_analysis_interpro_bundle_instances_info($entity_type, $bundle) {
         'chado_table' => 'analysis_feature',
         'chado_column' => '',
         'base_table' => 'feature',
+        // The short name for the vocabulary (e.g. schema, SO, GO, PATO, etc.).
+        'term_vocabulary' => 'local',
+        // The name of the term.
+        'term_name' => 'InterPro results',
+        // The unique ID (i.e. accession) of the term.
+        'term_accession' => 'interpro_results',
       ),
       'widget' => array(
         'type' => 'local__interpro_results_widget',
