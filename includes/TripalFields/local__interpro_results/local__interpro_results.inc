@@ -40,14 +40,8 @@ class local__interpro_results extends ChadoField {
   public function load($entity, $details = array()) {
     $record = $entity->chado_record;
 
-    $settings = $this->instance['settings'];
     $field_name = $this->field['field_name'];
-    $field_type = $this->field['type'];
-    $field_table = $this->instance['settings']['chado_table'];
-    $field_column = $this->instance['settings']['chado_column'];
 
-    // Get the terms for each of the keys for the 'values' property.
-    $label_term = 'format:1341';
     // Set some defaults for the empty record.
     $entity->{$field_name}['und'][0] = array(
       'value' => ''
@@ -56,7 +50,9 @@ class local__interpro_results extends ChadoField {
     // Get the list of results.
     $interpro_results = tripal_get_interpro_XML_results($record->feature_id);
     if (is_array($interpro_results)) {
-      foreach ($interpro_results as $delta => $results) {
+      $total = count($interpro_results);
+      for ($delta = 0; $delta < $total; $delta++) {
+        $results = $interpro_results[$delta];
         $xml = '';
         if (isset($results->xml)) {
           $xml = $results->xml;

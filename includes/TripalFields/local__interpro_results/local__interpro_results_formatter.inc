@@ -50,19 +50,15 @@ class local__interpro_results_formatter extends ChadoFieldFormatter {
     ));
 
     // Get the settings
-    $settings = $display['settings'];
     $feature = $entity->chado_record;
     $feature = chado_expand_var($feature, 'field', 'feature.residues');
 
-    $num_results_per_page = 10;
-    $feature_pager_id = 15; // increment by 1 for each database
     $i = 0;
     $list_items = '';
     foreach ($items as $delta => $item) {
       if (isset($item['parsed'])) {
-        $analysis_id = $delta;
         $details = $item['parsed'];
-        
+
         if(!isset($details['iprterms'])) continue;
         $analysis   = $details['analysis'];
         $iprterms   = $details['iprterms'];
